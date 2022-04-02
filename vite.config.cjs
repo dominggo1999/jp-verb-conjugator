@@ -1,8 +1,6 @@
 // vite.config.js
-
-import path, { dirname } from 'path';
+import path from 'path';
 import { defineConfig } from 'vite';
-import { fileURLToPath } from 'url';
 
 export default defineConfig({
   build: {
