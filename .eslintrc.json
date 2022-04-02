@@ -28,6 +28,8 @@
 					{
 							"js": "ignorePackages"
 					}
-			]
+			],
+			"import/no-extraneous-dependencies" : 0,
+			"no-underscore-dangle" : 0
     }
 }
