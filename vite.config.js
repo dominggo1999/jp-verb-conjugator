@@ -6,7 +6,9 @@ const commonjs = require('@rollup/plugin-commonjs');
 
 module.exports = defineConfig({
   plugins: [
-    commonjs(),
+    commonjs({
+      transformMixedEsModules: true,
+    }),
   ],
   build: {
     minify: true,
@@ -14,7 +16,9 @@ module.exports = defineConfig({
     lib: {
       entry: path.resolve(__dirname, 'lib/index.js'),
       name: 'MyLib',
-      fileName: (format) => `my-lib.${format}.js`,
+      fileName: (format) => {
+        return format === 'es' ? 'my-lib.mjs' : 'my-lib.cjs';
+      },
     },
     rollupOptions: {
       // make sure to externalize deps that shouldn't be bundled
@@ -27,6 +31,7 @@ module.exports = defineConfig({
           kuroshiro: 'kuroshiro',
           'kuroshiro-analyzer-kuromoji': 'kuroshiro-analyzer-kuromoji',
         },
+        exports: 'named',
       },
     },
   },
